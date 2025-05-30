@@ -1,84 +1,209 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<html>
-  <head>
-    <title>Save Scripts Report</title>
-  </head>
-  <body>
-    <p STYLE="font-family: Verdana, Arial, sans-serif; font-size: 14pt;">
-      <b>Save Scripts Report</b>
-    </p>
-    <p STYLE="font-family: Verdana, Arial, sans-serif; font-size: 10pt;">
-      <b>Report Date/Time:</b>5/29/2025 11:13 PM<br /></p>
-    <table border="1" cellpadding="7" cellspacing="0" STYLE="font-family: Verdana, Arial, sans-serif; font-size: 9pt;">
-      <tr style="background-color:Silver">
-        <th colspan="2" align="center">Name</th>
-        <th align="center">Result</th>
-        <th align="center">Message</th>
-      </tr>
-      <tr valign="top">
-        <td>
-          <img src="resources\ProgressSuccess.ico" />
-        </td>
-        <td>Getting the list of objects from 'MyLibraryDB'.</td>
-        <td>Passed</td>
-        <td> </td>
-      </tr>
-      <tr valign="top" style="background-color:LightYellow">
-        <td>
-          <img src="resources\ProgressSuccess.ico" />
-        </td>
-        <td>Preparing MyLibraryDB</td>
-        <td>Passed</td>
-        <td> </td>
-      </tr>
-      <tr valign="top">
-        <td>
-          <img src="resources\ProgressSuccess.ico" />
-        </td>
-        <td>Preparing dbo.Books</td>
-        <td>Passed</td>
-        <td> </td>
-      </tr>
-      <tr valign="top" style="background-color:LightYellow">
-        <td>
-          <img src="resources\ProgressSuccess.ico" />
-        </td>
-        <td>Preparing dbo.BorrowedBooks</td>
-        <td>Passed</td>
-        <td> </td>
-      </tr>
-      <tr valign="top">
-        <td>
-          <img src="resources\ProgressSuccess.ico" />
-        </td>
-        <td>Preparing dbo.Borrowers</td>
-        <td>Passed</td>
-        <td> </td>
-      </tr>
-      <tr valign="top" style="background-color:LightYellow">
-        <td>
-          <img src="resources\ProgressSuccess.ico" />
-        </td>
-        <td>Preparing dbo.IssuedBooks</td>
-        <td>Passed</td>
-        <td> </td>
-      </tr>
-      <tr valign="top">
-        <td>
-          <img src="resources\ProgressSuccess.ico" />
-        </td>
-        <td>Preparing dbo.Users</td>
-        <td>Passed</td>
-        <td> </td>
-      </tr>
-      <tr valign="top" style="background-color:LightYellow">
-        <td>
-          <img src="resources\ProgressSuccess.ico" />
-        </td>
-        <td>Save to file</td>
-        <td>Passed</td>
-        <td> </td>
-      </tr>
-    </table>
-  </body>
-</html>
+USE [master]
+GO
+/****** Object:  Database [MyLibraryDB]    Script Date: 5/29/2025 11:12:18 PM ******/
+CREATE DATABASE [MyLibraryDB]
+ CONTAINMENT = NONE
+ ON  PRIMARY 
+( NAME = N'MyLibraryDB', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL16.MSSQLSERVER\MSSQL\DATA\MyLibraryDB.mdf' , SIZE = 8192KB , MAXSIZE = UNLIMITED, FILEGROWTH = 65536KB )
+ LOG ON 
+( NAME = N'MyLibraryDB_log', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL16.MSSQLSERVER\MSSQL\DATA\MyLibraryDB_log.ldf' , SIZE = 8192KB , MAXSIZE = 2048GB , FILEGROWTH = 65536KB )
+ WITH CATALOG_COLLATION = DATABASE_DEFAULT, LEDGER = OFF
+GO
+ALTER DATABASE [MyLibraryDB] SET COMPATIBILITY_LEVEL = 160
+GO
+IF (1 = FULLTEXTSERVICEPROPERTY('IsFullTextInstalled'))
+begin
+EXEC [MyLibraryDB].[dbo].[sp_fulltext_database] @action = 'enable'
+end
+GO
+ALTER DATABASE [MyLibraryDB] SET ANSI_NULL_DEFAULT OFF 
+GO
+ALTER DATABASE [MyLibraryDB] SET ANSI_NULLS OFF 
+GO
+ALTER DATABASE [MyLibraryDB] SET ANSI_PADDING OFF 
+GO
+ALTER DATABASE [MyLibraryDB] SET ANSI_WARNINGS OFF 
+GO
+ALTER DATABASE [MyLibraryDB] SET ARITHABORT OFF 
+GO
+ALTER DATABASE [MyLibraryDB] SET AUTO_CLOSE OFF 
+GO
+ALTER DATABASE [MyLibraryDB] SET AUTO_SHRINK OFF 
+GO
+ALTER DATABASE [MyLibraryDB] SET AUTO_UPDATE_STATISTICS ON 
+GO
+ALTER DATABASE [MyLibraryDB] SET CURSOR_CLOSE_ON_COMMIT OFF 
+GO
+ALTER DATABASE [MyLibraryDB] SET CURSOR_DEFAULT  GLOBAL 
+GO
+ALTER DATABASE [MyLibraryDB] SET CONCAT_NULL_YIELDS_NULL OFF 
+GO
+ALTER DATABASE [MyLibraryDB] SET NUMERIC_ROUNDABORT OFF 
+GO
+ALTER DATABASE [MyLibraryDB] SET QUOTED_IDENTIFIER OFF 
+GO
+ALTER DATABASE [MyLibraryDB] SET RECURSIVE_TRIGGERS OFF 
+GO
+ALTER DATABASE [MyLibraryDB] SET  ENABLE_BROKER 
+GO
+ALTER DATABASE [MyLibraryDB] SET AUTO_UPDATE_STATISTICS_ASYNC OFF 
+GO
+ALTER DATABASE [MyLibraryDB] SET DATE_CORRELATION_OPTIMIZATION OFF 
+GO
+ALTER DATABASE [MyLibraryDB] SET TRUSTWORTHY OFF 
+GO
+ALTER DATABASE [MyLibraryDB] SET ALLOW_SNAPSHOT_ISOLATION OFF 
+GO
+ALTER DATABASE [MyLibraryDB] SET PARAMETERIZATION SIMPLE 
+GO
+ALTER DATABASE [MyLibraryDB] SET READ_COMMITTED_SNAPSHOT OFF 
+GO
+ALTER DATABASE [MyLibraryDB] SET HONOR_BROKER_PRIORITY OFF 
+GO
+ALTER DATABASE [MyLibraryDB] SET RECOVERY FULL 
+GO
+ALTER DATABASE [MyLibraryDB] SET  MULTI_USER 
+GO
+ALTER DATABASE [MyLibraryDB] SET PAGE_VERIFY CHECKSUM  
+GO
+ALTER DATABASE [MyLibraryDB] SET DB_CHAINING OFF 
+GO
+ALTER DATABASE [MyLibraryDB] SET FILESTREAM( NON_TRANSACTED_ACCESS = OFF ) 
+GO
+ALTER DATABASE [MyLibraryDB] SET TARGET_RECOVERY_TIME = 60 SECONDS 
+GO
+ALTER DATABASE [MyLibraryDB] SET DELAYED_DURABILITY = DISABLED 
+GO
+ALTER DATABASE [MyLibraryDB] SET ACCELERATED_DATABASE_RECOVERY = OFF  
+GO
+EXEC sys.sp_db_vardecimal_storage_format N'MyLibraryDB', N'ON'
+GO
+ALTER DATABASE [MyLibraryDB] SET QUERY_STORE = ON
+GO
+ALTER DATABASE [MyLibraryDB] SET QUERY_STORE (OPERATION_MODE = READ_WRITE, CLEANUP_POLICY = (STALE_QUERY_THRESHOLD_DAYS = 30), DATA_FLUSH_INTERVAL_SECONDS = 900, INTERVAL_LENGTH_MINUTES = 60, MAX_STORAGE_SIZE_MB = 1000, QUERY_CAPTURE_MODE = AUTO, SIZE_BASED_CLEANUP_MODE = AUTO, MAX_PLANS_PER_QUERY = 200, WAIT_STATS_CAPTURE_MODE = ON)
+GO
+USE [MyLibraryDB]
+GO
+/****** Object:  Table [dbo].[Books]    Script Date: 5/29/2025 11:12:19 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Books](
+	[BookID] [int] IDENTITY(1,1) NOT NULL,
+	[Title] [nvarchar](255) NOT NULL,
+	[Author] [nvarchar](255) NOT NULL,
+	[ISBN] [nvarchar](20) NULL,
+	[PublicationYear] [int] NULL,
+	[TotalCopies] [int] NOT NULL,
+	[AvailableCopies] [int] NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[BookID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY],
+UNIQUE NONCLUSTERED 
+(
+	[ISBN] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[BorrowedBooks]    Script Date: 5/29/2025 11:12:19 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[BorrowedBooks](
+	[BorrowedID] [int] IDENTITY(1,1) NOT NULL,
+	[BookID] [int] NOT NULL,
+	[BorrowerID] [int] NOT NULL,
+	[BorrowDate] [datetime] NOT NULL,
+	[DueDate] [datetime] NOT NULL,
+	[ReturnDate] [datetime] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[BorrowedID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Borrowers]    Script Date: 5/29/2025 11:12:19 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Borrowers](
+	[BorrowerID] [int] IDENTITY(1,1) NOT NULL,
+	[Name] [nvarchar](255) NOT NULL,
+	[Email] [nvarchar](255) NULL,
+	[Phone] [nvarchar](20) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[BorrowerID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY],
+UNIQUE NONCLUSTERED 
+(
+	[Email] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[IssuedBooks]    Script Date: 5/29/2025 11:12:19 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[IssuedBooks](
+	[IssueID] [int] IDENTITY(1,1) NOT NULL,
+	[BookID] [int] NOT NULL,
+	[BorrowerID] [int] NOT NULL,
+	[IssueDate] [date] NOT NULL,
+	[DueDate] [date] NOT NULL,
+	[ReturnDate] [date] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[IssueID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Users]    Script Date: 5/29/2025 11:12:19 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Users](
+	[UserID] [int] IDENTITY(1,1) NOT NULL,
+	[Username] [nvarchar](50) NOT NULL,
+	[PasswordHash] [nvarchar](255) NOT NULL,
+	[Role] [nvarchar](50) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[UserID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY],
+UNIQUE NONCLUSTERED 
+(
+	[Username] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+ALTER TABLE [dbo].[Books] ADD  DEFAULT ((1)) FOR [TotalCopies]
+GO
+ALTER TABLE [dbo].[Books] ADD  DEFAULT ((1)) FOR [AvailableCopies]
+GO
+ALTER TABLE [dbo].[BorrowedBooks] ADD  DEFAULT (getdate()) FOR [BorrowDate]
+GO
+ALTER TABLE [dbo].[Users] ADD  DEFAULT ('User') FOR [Role]
+GO
+ALTER TABLE [dbo].[BorrowedBooks]  WITH CHECK ADD FOREIGN KEY([BookID])
+REFERENCES [dbo].[Books] ([BookID])
+GO
+ALTER TABLE [dbo].[BorrowedBooks]  WITH CHECK ADD FOREIGN KEY([BorrowerID])
+REFERENCES [dbo].[Borrowers] ([BorrowerID])
+GO
+ALTER TABLE [dbo].[IssuedBooks]  WITH CHECK ADD FOREIGN KEY([BookID])
+REFERENCES [dbo].[Books] ([BookID])
+GO
+ALTER TABLE [dbo].[IssuedBooks]  WITH CHECK ADD FOREIGN KEY([BorrowerID])
+REFERENCES [dbo].[Borrowers] ([BorrowerID])
+GO
+USE [master]
+GO
+ALTER DATABASE [MyLibraryDB] SET  READ_WRITE 
+GO
